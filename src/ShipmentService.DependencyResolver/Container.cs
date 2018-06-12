@@ -67,7 +67,14 @@ namespace ShipmentService.DependencyResolver
 		{
 			var method = typeof(Container).GetMethod(nameof(Resolve), BindingFlags.Instance | BindingFlags.NonPublic, null, new[] { typeof(HashSet<Type>) }, null);
 			method = method.MakeGenericMethod(definitionType);
-			return method.Invoke(this, BindingFlags.InvokeMethod, null, new object[] { callSync }, CultureInfo.InvariantCulture);
+			try
+			{
+				return method.Invoke(this, BindingFlags.InvokeMethod, null, new object[] { callSync }, CultureInfo.InvariantCulture);
+			}
+			catch (TargetInvocationException exception)
+			{
+				throw exception.InnerException;
+			}
 		}
 	}
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentService.DependencyR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShipmentService.App", "ShipmentService.App\ShipmentService.App.csproj", "{56A6C2A1-A8BD-447F-A100-E2FCD2BA6F1C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShipmentService.Tests", "ShipmentService.Tests\ShipmentService.Tests.csproj", "{C33D3E87-135A-487B-8CFF-C3571D234021}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{56A6C2A1-A8BD-447F-A100-E2FCD2BA6F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56A6C2A1-A8BD-447F-A100-E2FCD2BA6F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56A6C2A1-A8BD-447F-A100-E2FCD2BA6F1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C33D3E87-135A-487B-8CFF-C3571D234021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C33D3E87-135A-487B-8CFF-C3571D234021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C33D3E87-135A-487B-8CFF-C3571D234021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C33D3E87-135A-487B-8CFF-C3571D234021}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
