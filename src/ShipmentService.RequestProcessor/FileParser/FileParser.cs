@@ -23,7 +23,7 @@ namespace ShipmentService.RequestProcessor.FileParser
 		{
 			if (!File.Exists(filename))
 			{
-				throw new FileNotFoundException("Could not find the file", filename);
+				throw new FileNotFoundException($"Could not find the file {filename}");
 			}
 
 			var fileStream = new BufferedStream(File.OpenRead(filename));

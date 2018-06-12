@@ -23,27 +23,32 @@ namespace ShipmentService.App
             router.RegisterProvider(new LaPosteProvider());
             router.RegisterProvider(new MondialRelayProvider());
 
-            var fileParser = container.Resolve<IFileParser>();
-            fileParser.OpenFile(args.Length > 0 ? args[0] : DefaultInputFileName);
-
-            // Do processing
-            ShipmentRequest request;
-            do
+            try
             {
-                request = fileParser.GetNextRequest();
-                if (request.IsValid && router.TryGetShipmentPrice(request, out ShipmentPrice price))
-                {
-                    Console.WriteLine($"{request.Source} {price.Price:#,##0.00} {price.Discount:#,##0.00;'—';'—'}");
-                }
-                else
-                {
-                    Console.WriteLine($"{request.Source} Ignored");
-                }
-            } while (!request.IsLast);
+                var fileParser = container.Resolve<IFileParser>();
+                fileParser.OpenFile(args.Length > 0 ? args[0] : DefaultInputFileName);
 
-            Console.WriteLine();
-            Console.WriteLine("Press enter to continue...");
-            Console.ReadLine();
+                // Do processing
+                ShipmentRequest request;
+                do
+                {
+                    request = fileParser.GetNextRequest();
+                    if (request.IsValid && router.TryGetShipmentPrice(request, out ShipmentPrice price))
+                    {
+                        Console.WriteLine($"{request.Source} {price.Price:#,##0.00} {price.Discount:#,##0.00;'—';'—'}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{request.Source} Ignored");
+                    }
+                } while (!request.IsLast);
+
+                fileParser.Dispose();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }
