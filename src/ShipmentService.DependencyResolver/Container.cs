@@ -51,17 +51,23 @@ namespace ShipmentService.DependencyResolver
 		{
 			return registry.ContainsKey(bindingType);
 		}
+		
+		/// <summary>
+		/// Resolves definition to implementation using compile-time types
+		/// </summary>
+		internal TDefinition Resolve<TDefinition>(HashSet<Type> callSync)
+		{
+			return (TDefinition)((Binding<TDefinition>)registry[typeof(TDefinition)]).CreateInstance(this, callSync);
+		}
 
+		/// <summary>
+		/// Resolves definition to implementation using reflection, used when compile-time types are not available
+		/// </summary>
 		internal object Resolve(Type definitionType, HashSet<Type> callSync)
 		{
 			var method = typeof(Container).GetMethod(nameof(Resolve), BindingFlags.Instance | BindingFlags.NonPublic, null, new[] { typeof(HashSet<Type>) }, null);
 			method = method.MakeGenericMethod(definitionType);
 			return method.Invoke(this, BindingFlags.InvokeMethod, null, new object[] { callSync }, CultureInfo.InvariantCulture);
-		}
-
-		internal TDefinition Resolve<TDefinition>(HashSet<Type> callSync)
-		{
-			return (TDefinition)((Binding<TDefinition>)registry[typeof(TDefinition)]).CreateInstance(this, callSync);
 		}
 	}
 }
