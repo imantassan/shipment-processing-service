@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-
 using ShipmentService.RequestProcessor.Dto;
 
 namespace ShipmentService.RequestProcessor.FileParser
@@ -16,6 +15,10 @@ namespace ShipmentService.RequestProcessor.FileParser
 			reader = null;
 		}
 
+		/// <summary>
+		/// Opens the file for parsing
+		/// </summary>
+		/// <param name="filename">Name of full path to the file to open</param>
 		public void OpenFile(string filename)
 		{
 			if (!File.Exists(filename))
@@ -27,6 +30,9 @@ namespace ShipmentService.RequestProcessor.FileParser
 			reader = new StreamReader(fileStream);
 		}
 
+		/// <summary>
+		/// Reads a single request from the file opened if one is still available
+		/// </summary>
 		public ShipmentRequest GetNextRequest()
 		{
 			if (reader.EndOfStream)

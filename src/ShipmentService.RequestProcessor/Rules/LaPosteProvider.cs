@@ -4,8 +4,14 @@ using ShipmentService.RequestProcessor.Dto;
 
 namespace ShipmentService.RequestProcessor.Rules
 {
+	/// <summary>
+	/// Contains all the rules and prices for the "La Poste" shipping provider
+	/// </summary>
 	public class LaPosteProvider : ProviderBase
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="LaPosteProvider"/> class.
+		/// </summary>
 		public LaPosteProvider()
 			: base("LP", new Dictionary<char, decimal>
 			{
@@ -18,6 +24,10 @@ namespace ShipmentService.RequestProcessor.Rules
 
 		private readonly Dictionary<int, int> largePackagesPerMonth = new Dictionary<int, int>();
 
+		/// <summary>
+		/// Calculates the price for the given shipment <paramref name="request"/>
+		/// </summary>
+		/// <param name="request">Request to calculate the price for</param>
 		public override ShipmentPrice GetShipmentPrice(ShipmentRequest request)
 		{
 			if (request.PackageSize == PackageSize.L)
