@@ -1,7 +1,13 @@
-﻿namespace ShipmentService.RequestProcessor.FileParser
+﻿using System;
+
+using ShipmentService.RequestProcessor.Dto;
+
+namespace ShipmentService.RequestProcessor.FileParser
 {
-	public interface IFileParser
+	public interface IFileParser : IDisposable
 	{
-		
+		void OpenFile(string filename);
+
+		ShipmentRequest GetNextRequest();
 	}
 }
